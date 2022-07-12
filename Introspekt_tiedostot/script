@@ -1,0 +1,23 @@
+function elemsSameHeight(selector){
+    var max_height=0;
+    jQuery(selector).css('height','');
+    jQuery(selector).each(function(){
+        if(jQuery(this).outerHeight() > max_height){
+            max_height=jQuery(this).outerHeight();
+        }
+    });
+    jQuery(selector).css('height',max_height);    
+}
+
+function setElemsSameHeight(selector){
+    jQuery(window).load(function(){elemsSameHeight(selector);});
+    jQuery(document).ready(function(){elemsSameHeight(selector);});
+    jQuery(window).resize(function(){elemsSameHeight(selector);});
+}
+
+setElemsSameHeight('.elems_same_height .wpb_text_column');
+setElemsSameHeight('.elems_same_height .therapist');
+
+jQuery(window).ready(function(){
+    jQuery('#content.blog_main_content').isotope();
+});
